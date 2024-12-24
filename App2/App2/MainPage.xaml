@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App2.MainPage">
+    <StackLayout Padding="20">
+
+        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto">
+
+            <Button x:Name="scanBtn" Text="Scan" BackgroundColor="White" TextColor="Black" BorderColor="Blue" Grid.Column="0" Clicked="OnScanButtonClicked" />
+            <Button x:Name="detaislBtn" Text="Details" BackgroundColor="White" TextColor="Gray" BorderColor="Blue" Grid.Column="1" Clicked="OnDetailsButtonClicked" />
+        </Grid>
+        
+        <Frame x:Name="scanFrame" CornerRadius="8" BorderColor="Red" >
+
+            <Grid ColumnDefinitions="*,50" RowDefinitions="Auto">
+                <Entry x:Name="txtCode" 
+                   Placeholder="Enter 16-digit code" 
+                   MaxLength="16" 
+                   Keyboard="Numeric" 
+                   TextChanged="OnCodeChanged"/>
+
+                <ImageButton Grid.Column="1" WidthRequest="20" HeightRequest="20" BackgroundColor="Transparent" Source="scan.png" Clicked="OnScanClicked"/>
+            </Grid>
+        </Frame>
+
+        <ListView x:Name="itemsList" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                            <Label Text="SectionID" IsVisible="{Binding IsDetailsTab}" HorizontalOptions="Fill" TextColor="Black"/>
+                            <Label Text="{Binding Code}" HorizontalOptions="Fill" TextColor="Black"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+        <Grid ColumnDefinitions="*,*,50" RowDefinitions="Auto">
+            
+        <Button Text="Clear" BackgroundColor="White" TextColor="Black" BorderColor="Blue"
+                Grid.Column="0" Clicked="OnClearButtonClicked" />
+            
+            <Button Text="Delete" BackgroundColor="White" TextColor="Black" BorderColor="Blue"
+                    Grid.Column="1" Clicked="OnDeleteButtonClicked" />
+            
+        <Button x:Name="ItemCountBtn" Text="0" BackgroundColor="White" TextColor="Black" 
+                BorderColor="Blue" Grid.Column="2" />
+        </Grid>
+
+        <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Fill">
+            <Button Text="Reload" HorizontalOptions="Fill" Clicked="OnReloadButtonClicked" />
+            <Button Text="Submit" HorizontalOptions="Fill" Clicked="OnSubmitButtonClicked" />
+            <Button Text="Next" HorizontalOptions="Fill" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
